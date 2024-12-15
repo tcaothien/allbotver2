@@ -126,7 +126,7 @@ client.on('messageCreate', async (message) => {
     const embed = new EmbedBuilder()
       .setTitle('💰 Số dư của bạn')
       .setDescription(`Bạn hiện có **${user.balance.toLocaleString()} xu**.`)
-      .setColor('Red');
+      .setColor('#FF0000');
     message.reply({ embeds: [embed] });
   }
 
@@ -138,7 +138,7 @@ client.on('messageCreate', async (message) => {
     const embed = new EmbedBuilder()
       .setTitle('🎁 Quà tặng hàng ngày')
       .setDescription(`Bạn đã nhận được **${amount.toLocaleString()} xu**!`)
-      .setColor('Red');
+      .setColor('#FF0000');
     message.reply({ embeds: [embed] });
   }
 
@@ -165,7 +165,7 @@ client.on('messageCreate', async (message) => {
     const embed = new EmbedBuilder()
       .setTitle('💸 Chuyển xu thành công!')
       .setDescription(`Bạn đã chuyển **${amount.toLocaleString()} xu** cho **${target.username}**.`)
-      .setColor('Red');
+      .setColor('#FF0000');
     message.reply({ embeds: [embed] });
   }
 
@@ -190,7 +190,7 @@ if (command === 'nohu') {
     const embed = new EmbedBuilder()
       .setTitle('🎉 Nổ hũ thành công!')
       .setDescription(`Bạn đã trúng **${reward.toLocaleString()} xu**! 💰💥`)
-      .setColor('Red');
+      .setColor('#FF0000');
     message.reply({ embeds: [embed] });
   } else {
     user.balance -= amount;
@@ -199,7 +199,7 @@ if (command === 'nohu') {
     const embed = new EmbedBuilder()
       .setTitle('💣 Nổ hũ thất bại')
       .setDescription(`Bạn đã mất **${amount.toLocaleString()} xu**. Chúc bạn may mắn lần sau!`)
-      .setColor('Red');
+      .setColor('#FF0000');
     message.reply({ embeds: [embed] });
   }
 }
@@ -212,7 +212,7 @@ if (command === 'top') {
   const embed = new EmbedBuilder()
     .setTitle('🏆 Bảng xếp hạng Xu')
     .setDescription(leaderboard || 'Không có người chơi nào.')
-    .setColor('Red');
+    .setColor('#FF0000');
   message.reply({ embeds: [embed] });
 }
 
@@ -237,7 +237,7 @@ if (command === 'shop') {
   const embed = new EmbedBuilder()
     .setTitle('🛍️ Cửa hàng nhẫn')
     .setDescription(shopDescription)
-    .setColor('Pink');
+    .setColor('#FFCOCB');
   message.reply({ embeds: [embed] });
 }
 
@@ -273,7 +273,7 @@ if (command === 'buy') {
   const embed = new EmbedBuilder()
     .setTitle('✅ Mua thành công!')
     .setDescription(`Bạn đã mua **${item.name}** với giá **${item.price.toLocaleString()} xu**.`)
-    .setColor('Pink');
+    .setColor('#FFCOCB');
   message.reply({ embeds: [embed] });
 }
 
@@ -286,7 +286,7 @@ if (command === 'inv') {
   const embed = new EmbedBuilder()
     .setTitle('🎒 Kho vật phẩm của bạn')
     .setDescription(inventoryDescription)
-    .setColor('Red');
+    .setColor('#FF0000');
   message.reply({ embeds: [embed] });
 }
 
@@ -315,7 +315,7 @@ if (command === 'gift') {
   const embed = new EmbedBuilder()
     .setTitle('🎁 Tặng vật phẩm thành công!')
     .setDescription(`Bạn đã tặng **${item.name}** cho **${target.username}**.`)
-    .setColor('Pink');
+    .setColor('#FFCOCB');
   message.reply({ embeds: [embed] });
 }
 
@@ -343,7 +343,7 @@ if (command === 'tx') {
     const embed = new EmbedBuilder()
       .setTitle('🎲 Kết quả tài xỉu')
       .setDescription(`Bạn chọn **${choice}** và kết quả là **${result}** 🎉\n🎯 Bạn thắng **${bet.toLocaleString()} xu**!`)
-      .setColor('Red');
+      .setColor('#FF0000');
     message.reply({ embeds: [embed] });
   } else {
     user.balance -= bet;
@@ -352,7 +352,7 @@ if (command === 'tx') {
     const embed = new EmbedBuilder()
       .setTitle('🎲 Kết quả tài xỉu')
       .setDescription(`Bạn chọn **${choice}** nhưng kết quả là **${result}** 💔\n💸 Bạn đã mất **${bet.toLocaleString()} xu**.`)
-      .setColor('Red');
+      .setColor('#FF0000');
     message.reply({ embeds: [embed] });
   }
 }
@@ -382,7 +382,7 @@ if (command === 'marry') {
   const embed = new EmbedBuilder()
     .setTitle('💍 Lời cầu hôn')
     .setDescription(`**${message.author.username}** đã cầu hôn **${target.username}**!`)
-    .setColor('Pink');
+    .setColor('#FFCOCB');
 
   const reply = await message.reply({ embeds: [embed], components: [row] });
 
@@ -401,13 +401,13 @@ if (command === 'marry') {
       const successEmbed = new EmbedBuilder()
         .setTitle('💞 Kết hôn thành công!')
         .setDescription(`**${message.author.username}** và **${target.username}** đã trở thành vợ chồng! 🎉`)
-        .setColor('Pink');
+        .setColor('#FFCOCB');
       interaction.update({ embeds: [successEmbed], components: [] });
     } else {
       const declineEmbed = new EmbedBuilder()
         .setTitle('💔 Lời cầu hôn bị từ chối')
         .setDescription(`**${target.username}** đã từ chối lời cầu hôn của **${message.author.username}**.`)
-        .setColor('Pink');
+        .setColor('#FFCOCB');
       interaction.update({ embeds: [declineEmbed], components: [] });
     }
   });
@@ -434,7 +434,7 @@ if (command === 'divorce') {
   const embed = new EmbedBuilder()
     .setTitle('💔 Ly hôn')
     .setDescription(`Bạn muốn ly hôn với **${spouse.username}**?`)
-    .setColor('Pink');
+    .setColor('#FFCOCB');
   const reply = await message.reply({ embeds: [embed], components: [row] });
 
   const filter = i => i.user.id === message.author.id && ['confirm', 'cancel'].includes(i.customId);
@@ -452,13 +452,13 @@ if (command === 'divorce') {
       const successEmbed = new EmbedBuilder()
         .setTitle('💔 Ly hôn thành công')
         .setDescription(`**${message.author.username}** và **${spouse.username}** đã ly hôn.`)
-        .setColor('Pink');
+        .setColor('#FFCOCB');
       interaction.update({ embeds: [successEmbed], components: [] });
     } else {
       const cancelEmbed = new EmbedBuilder()
         .setTitle('❌ Ly hôn đã bị hủy')
         .setDescription(`Bạn đã hủy yêu cầu ly hôn với **${spouse.username}**.`)
-        .setColor('Pink');
+        .setColor('#FFCOCB');
       interaction.update({ embeds: [cancelEmbed], components: [] });
     }
   });
@@ -482,7 +482,7 @@ if (command === 'pmarry') {
   const embed = new EmbedBuilder()
     .setTitle('💞 Thông tin hôn nhân')
     .setDescription(`Bạn đang hạnh phúc với **${spouse.username}** ❤️`)
-    .setColor('Pink')
+    .setColor('#FFCOCB')
     .addFields(
       { name: '💍 Nhẫn kết hôn:', value: user.marriageRing || 'Không có' },
       { name: '💖 Điểm yêu thương:', value: `${user.lovePoints || 0}` },
@@ -623,7 +623,7 @@ if (command === 'sn') {
 
   let index = 0;
   const embed = new EmbedBuilder()
-    .setColor('Red')
+    .setColor('#FF0000')
     .setTitle('📜 Tin nhắn đã xóa')
     .setDescription(`Nội dung: ${deletedMessages[index].content || 'Tin nhắn không có nội dung.'}`)
     .setFooter({ text: `Tin nhắn ${index + 1}/${deletedMessages.length}` });
@@ -661,7 +661,7 @@ if (command === 'av') {
   const target = message.mentions.users.first() || message.author;
 
   const embed = new EmbedBuilder()
-    .setColor('Red')
+    .setColor('#FF0000')
     .setTitle(`🖼️ Avatar của ${target.username}`)
     .setImage(target.displayAvatarURL({ size: 1024, dynamic: true }));
 
@@ -732,7 +732,7 @@ if (command === 'listreply') {
   }
 
   const embed = new EmbedBuilder()
-    .setColor('Red')
+    .setColor('#FF0000')
     .setTitle('📋 Danh sách trả lời tự động')
     .setDescription(
       Array.from(client.autoReplies.entries())
