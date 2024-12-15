@@ -1,0 +1,14 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot with 45 commands.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "mongoose": "^7.0.4",
+    "dotenv": "^16.1.4"
+  }
+}
