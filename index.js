@@ -698,7 +698,7 @@ if (command === 'helps') {
     .setDescription('Dưới đây là các lệnh của bot được chia theo chức năng.');
 
   // Nhóm chức năng tài chính
-  embed.addField('💰 **Tài chính**', `
+  embed.addFields('💰 **Tài chính**', `
     \`e.xu\` - Kiểm tra số dư xu của bạn.
     \`e.daily\` - Nhận quà tặng xu hàng ngày (1000 đến 20000 xu).
     \`e.givexu <số tiền> <@user>\` - Chuyển xu cho người khác.
@@ -708,7 +708,7 @@ if (command === 'helps') {
   `);
 
   // Nhóm chức năng hôn nhân
-  embed.addField('💍 **Hôn nhân**', `
+  embed.addFields('💍 **Hôn nhân**', `
     \`e.shop\` - Hiển thị cửa hàng nhẫn kết hôn.
     \`e.addemojishop <ID sản phẩm> <emoji>\` - Thêm emoji vào sản phẩm trong shop (admin).
     \`e.delimmojishop <ID sản phẩm>\` - Xóa emoji khỏi sản phẩm trong shop (admin).
@@ -729,7 +729,7 @@ if (command === 'helps') {
   `);
 
   // Nhóm chức năng chung cho tất cả thành viên
-  embed.addField('🧑‍🤝‍🧑 **Chức năng cho thành viên**', `
+  embed.addFields('🧑‍🤝‍🧑 **Chức năng cho thành viên**', `
     \`e.sn\` - Xem lại 10 tin nhắn đã xóa gần nhất.
     \`e.av <@user>\` - Xem avatar của thành viên.
     \`e.rd <min> <max>\` - Random một số trong khoảng từ min đến max.
@@ -737,7 +737,7 @@ if (command === 'helps') {
   `);
 
   // Nhóm chức năng cho quản trị viên
-  embed.addField('🔧 **Chức năng quản trị viên**', `
+  embed.addFields('🔧 **Chức năng quản trị viên**', `
     \`e.addreply <câu trả lời>\` - Thêm câu trả lời tự động.
     \`e.delreply <câu trả lời>\` - Xóa câu trả lời tự động.
     \`e.listreply\` - Liệt kê các câu trả lời tự động.
@@ -751,7 +751,7 @@ if (command === 'helps') {
   `);
 
   // Nhóm chức năng cho admin bot
-  embed.addField('🛠 **Chức năng admin bot**', `
+  embed.addFields('🛠 **Chức năng admin bot**', `
     \`e.addxu <số xu> <@user>\` - Thêm xu cho người dùng (admin bot).
     \`e.delxu <số xu> <@user>\` - Trừ xu từ người dùng (admin bot).
     \`e.prefix <mới>\` - Thay đổi prefix của bot.
