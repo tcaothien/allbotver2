@@ -470,40 +470,51 @@ if (command === 'divorce') {
   });
 }
 
-// Command: "pmarry" - Xem thông tin hôn nhân (13)
 if (command === 'pmarry') {
+  // Kiểm tra xem người dùng có kết hôn hay không
   if (!user.marriage) {
     return message.reply('❌ Bạn chưa kết hôn với ai.');
   }
 
-  const spouse = await client.users.fetch(user.marriage);
-  const spouseData = await getUser(user.marriage);
+  try {
+    // Lấy thông tin của người phối ngẫu từ ID người dùng
+    const spouse = await client.users.fetch(user.marriage);
+    const spouseData = await getUser(user.marriage); // Kiểm tra hàm getUser để đảm bảo nó trả về dữ liệu hợp lệ
 
-  const embed = new EmbedBuilder()
-    .setTitle('💞 Thông tin hôn nhân')
-    .setDescription(`Bạn đang hạnh phúc với **${spouse.username}** ❤️`)
-    .setColor('Pink')
-    .addFields(
-      { name: '💍 Nhẫn kết hôn:', value: user.marriageRing || 'Không có' },
-      { name: '💖 Điểm yêu thương:', value: `${user.lovePoints || 0}` },
-      { name: '📅 Ngày kết hôn:', value: `${user.marriageDate || 'Chưa rõ'}` }
-    );
+    // Tạo Embed để hiển thị thông tin
+    const embed = new EmbedBuilder()
+      .setTitle('💞 Thông tin hôn nhân')
+      .setDescription(`Bạn đang hạnh phúc với **${spouse.username}** ❤️`)
+      .setColor('Pink')
+      .addFields(
+        { name: '💍 Nhẫn kết hôn:', value: user.marriageRing || 'Không có' },
+        { name: '💖 Điểm yêu thương:', value: `${user.lovePoints || 0}` },
+        { name: '📅 Ngày kết hôn:', value: `${user.marriageDate || 'Chưa rõ'}` }
+      );
 
-  if (user.marriageCaption) {
-    embed.addFields({ name: '📜 Caption:', value: user.marriageCaption });
+    // Thêm thông tin nếu có caption hoặc ảnh kết hôn
+    if (user.marriageCaption) {
+      embed.addFields({ name: '📜 Caption:', value: user.marriageCaption });
+    }
+
+    // Thêm ảnh hoặc biểu tượng nhẫn kết hôn nếu có
+    if (user.marriageImage) {
+      embed.setImage(user.marriageImage);
+    } else if (user.marriageRingEmoji) {
+      embed.setDescription(embed.data.description + ` ${user.marriageRingEmoji}`);
+    }
+
+    // Thêm hình thu nhỏ nếu có
+    if (user.marriageThumbnail) {
+      embed.setThumbnail(user.marriageThumbnail);
+    }
+
+    // Trả về kết quả
+    message.reply({ embeds: [embed] });
+  } catch (error) {
+    console.error('Lỗi khi lấy thông tin người phối ngẫu:', error);
+    message.reply('❌ Đã xảy ra lỗi khi lấy thông tin hôn nhân của bạn.');
   }
-
-  if (user.marriageImage) {
-    embed.setImage(user.marriageImage);
-  } else if (user.marriageRingEmoji) {
-    embed.setDescription(embed.data.description + ` ${user.marriageRingEmoji}`);
-  }
-
-  if (user.marriageThumbnail) {
-    embed.setThumbnail(user.marriageThumbnail);
-  }
-
-  message.reply({ embeds: [embed] });
 }
 
 // Command: "addimage" - Thêm ảnh lớn vào thông tin hôn nhân (14)
