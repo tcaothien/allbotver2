@@ -690,30 +690,76 @@ if (command === 'pick') {
   message.reply(`🎯 Lựa chọn ngẫu nhiên: **${choice}**`);
 }
 
-// Command: "helps" - Hiển thị danh sách các lệnh (25)
+// Command: "helps" - Hiển thị danh sách các lệnh theo nhóm chức năng (25)
 if (command === 'helps') {
-  const embed = new EmbedBuilder()
-    .setColor('Red')
-    .setTitle('📖 Danh sách lệnh')
-    .setDescription(`
-**Chức năng tài chính:**
-1. \`e.xu\` - Kiểm tra số dư xu.
-2. \`e.daily\` - Nhận quà tặng xu hàng ngày.
-...
+  const embed = new Discord.MessageEmbed()
+    .setColor('#FF0000') // Màu đỏ cho các lệnh tài chính, hôn nhân, quản trị, chung
+    .setTitle('Danh sách lệnh Bot')
+    .setDescription('Dưới đây là các lệnh của bot được chia theo chức năng.');
 
-**Chức năng hôn nhân:**
-1. \`e.shop\` - Xem cửa hàng.
-2. \`e.marry\` - Cầu hôn.
-...
+  // Nhóm chức năng tài chính
+  embed.addField('💰 **Tài chính**', `
+    \`e.xu\` - Kiểm tra số dư xu của bạn.
+    \`e.daily\` - Nhận quà tặng xu hàng ngày (1000 đến 20000 xu).
+    \`e.givexu <số tiền> <@user>\` - Chuyển xu cho người khác.
+    \`e.tx <tài|xỉu> <số điểm>\` - Đặt cược tài xỉu (tài hoặc xỉu, số điểm từ 3 đến 18).
+    \`e.nohu <số xu>\` - Đặt cược tiền có thể trúng x100 số xu.
+    \`e.top\` - Hiển thị bảng xếp hạng xu của server.
+  `);
 
-**Chức năng khác:**
-1. \`e.sn\` - Xem tin nhắn đã xóa.
-2. \`e.av\` - Xem avatar.
-...
-    `)
-    .setFooter({ text: 'Sử dụng lệnh e.help [tên lệnh] để biết thêm chi tiết.' });
+  // Nhóm chức năng hôn nhân
+  embed.addField('💍 **Hôn nhân**', `
+    \`e.shop\` - Hiển thị cửa hàng nhẫn kết hôn.
+    \`e.addemojishop <ID sản phẩm> <emoji>\` - Thêm emoji vào sản phẩm trong shop (admin).
+    \`e.delimmojishop <ID sản phẩm>\` - Xóa emoji khỏi sản phẩm trong shop (admin).
+    \`e.addspshop <ID> <tên sản phẩm> <giá>\` - Thêm sản phẩm vào shop (admin).
+    \`e.delspshop <ID sản phẩm>\` - Xóa sản phẩm khỏi shop (admin).
+    \`e.buy <ID sản phẩm>\` - Mua sản phẩm từ cửa hàng.
+    \`e.inv\` - Kiểm tra kho vật phẩm của bạn.
+    \`e.gift <@user> <ID sản phẩm>\` - Tặng sản phẩm cho người khác.
+    \`e.marry <@user>\` - Cầu hôn người khác (cần nhẫn từ kho).
+    \`e.divorce\` - Ly hôn với đối tác.
+    \`e.pmarry\` - Xem thông tin hôn nhân của bạn.
+    \`e.addimage <link hình ảnh>\` - Thêm ảnh vào thông tin hôn nhân.
+    \`e.delimage\` - Xóa ảnh khỏi thông tin hôn nhân.
+    \`e.addthumbnail <link thumbnail>\` - Thêm thumbnail vào thông tin hôn nhân.
+    \`e.delthumbnail\` - Xóa thumbnail khỏi thông tin hôn nhân.
+    \`e.addcaption <caption>\` - Thêm caption vào thông tin hôn nhân.
+    \`e.delcaption\` - Xóa caption khỏi thông tin hôn nhân.
+  `);
 
-  message.reply({ embeds: [embed] });
+  // Nhóm chức năng chung cho tất cả thành viên
+  embed.addField('🧑‍🤝‍🧑 **Chức năng cho thành viên**', `
+    \`e.sn\` - Xem lại 10 tin nhắn đã xóa gần nhất.
+    \`e.av <@user>\` - Xem avatar của thành viên.
+    \`e.rd <min> <max>\` - Random một số trong khoảng từ min đến max.
+    \`e.pick <option1|option2|option3>\` - Chọn ngẫu nhiên trong các tùy chọn đưa ra.
+  `);
+
+  // Nhóm chức năng cho quản trị viên
+  embed.addField('🔧 **Chức năng quản trị viên**', `
+    \`e.addreply <câu trả lời>\` - Thêm câu trả lời tự động.
+    \`e.delreply <câu trả lời>\` - Xóa câu trả lời tự động.
+    \`e.listreply\` - Liệt kê các câu trả lời tự động.
+    \`e.ban <@user>\` - Ban một thành viên.
+    \`e.unban <@user>\` - Mở ban cho thành viên.
+    \`e.mute <@user>\` - Mute một thành viên.
+    \`e.unmute <@user>\` - Mở mute cho thành viên.
+    \`e.kick <@user>\` - Kick một thành viên.
+    \`e.lock\` - Khóa kênh chat.
+    \`e.unlock\` - Mở khóa kênh chat.
+  `);
+
+  // Nhóm chức năng cho admin bot
+  embed.addField('🛠 **Chức năng admin bot**', `
+    \`e.addxu <số xu> <@user>\` - Thêm xu cho người dùng (admin bot).
+    \`e.delxu <số xu> <@user>\` - Trừ xu từ người dùng (admin bot).
+    \`e.prefix <mới>\` - Thay đổi prefix của bot.
+    \`e.resetallbot\` - Reset tất cả dữ liệu của bot.
+  `);
+
+  // Gửi embed
+  message.channel.send({ embeds: [embed] });
 }
 
 // Command: "addreply" - Thêm trả lời tự động (26)
