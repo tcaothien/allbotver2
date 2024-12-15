@@ -237,7 +237,7 @@ if (command === 'shop') {
   const embed = new EmbedBuilder()
     .setTitle('🛍️ Cửa hàng nhẫn')
     .setDescription(shopDescription)
-    .setColor('#FFCOCB');
+    .setColor('#FF00CB');
   message.reply({ embeds: [embed] });
 }
 
@@ -273,7 +273,7 @@ if (command === 'buy') {
   const embed = new EmbedBuilder()
     .setTitle('✅ Mua thành công!')
     .setDescription(`Bạn đã mua **${item.name}** với giá **${item.price.toLocaleString()} xu**.`)
-    .setColor('#FFCOCB');
+    .setColor('#FF00CB');
   message.reply({ embeds: [embed] });
 }
 
@@ -315,7 +315,7 @@ if (command === 'gift') {
   const embed = new EmbedBuilder()
     .setTitle('🎁 Tặng vật phẩm thành công!')
     .setDescription(`Bạn đã tặng **${item.name}** cho **${target.username}**.`)
-    .setColor('#FFCOCB');
+    .setColor('#FF00CB');
   message.reply({ embeds: [embed] });
 }
 
@@ -382,7 +382,7 @@ if (command === 'marry') {
   const embed = new EmbedBuilder()
     .setTitle('💍 Lời cầu hôn')
     .setDescription(`**${message.author.username}** đã cầu hôn **${target.username}**!`)
-    .setColor('#FFCOCB');
+    .setColor('#FF00CB');
 
   const reply = await message.reply({ embeds: [embed], components: [row] });
 
@@ -401,13 +401,13 @@ if (command === 'marry') {
       const successEmbed = new EmbedBuilder()
         .setTitle('💞 Kết hôn thành công!')
         .setDescription(`**${message.author.username}** và **${target.username}** đã trở thành vợ chồng! 🎉`)
-        .setColor('#FFCOCB');
+        .setColor('#FF00CB');
       interaction.update({ embeds: [successEmbed], components: [] });
     } else {
       const declineEmbed = new EmbedBuilder()
         .setTitle('💔 Lời cầu hôn bị từ chối')
         .setDescription(`**${target.username}** đã từ chối lời cầu hôn của **${message.author.username}**.`)
-        .setColor('#FFCOCB');
+        .setColor('#FF00CB');
       interaction.update({ embeds: [declineEmbed], components: [] });
     }
   });
@@ -434,7 +434,7 @@ if (command === 'divorce') {
   const embed = new EmbedBuilder()
     .setTitle('💔 Ly hôn')
     .setDescription(`Bạn muốn ly hôn với **${spouse.username}**?`)
-    .setColor('#FFCOCB');
+    .setColor('#FF00CB');
   const reply = await message.reply({ embeds: [embed], components: [row] });
 
   const filter = i => i.user.id === message.author.id && ['confirm', 'cancel'].includes(i.customId);
@@ -452,13 +452,13 @@ if (command === 'divorce') {
       const successEmbed = new EmbedBuilder()
         .setTitle('💔 Ly hôn thành công')
         .setDescription(`**${message.author.username}** và **${spouse.username}** đã ly hôn.`)
-        .setColor('#FFCOCB');
+        .setColor('#FF00CB');
       interaction.update({ embeds: [successEmbed], components: [] });
     } else {
       const cancelEmbed = new EmbedBuilder()
         .setTitle('❌ Ly hôn đã bị hủy')
         .setDescription(`Bạn đã hủy yêu cầu ly hôn với **${spouse.username}**.`)
-        .setColor('#FFCOCB');
+        .setColor('#FF00CB');
       interaction.update({ embeds: [cancelEmbed], components: [] });
     }
   });
@@ -482,7 +482,7 @@ if (command === 'pmarry') {
   const embed = new EmbedBuilder()
     .setTitle('💞 Thông tin hôn nhân')
     .setDescription(`Bạn đang hạnh phúc với **${spouse.username}** ❤️`)
-    .setColor('#FFCOCB')
+    .setColor('#FF00CB')
     .addFields(
       { name: '💍 Nhẫn kết hôn:', value: user.marriageRing || 'Không có' },
       { name: '💖 Điểm yêu thương:', value: `${user.lovePoints || 0}` },
